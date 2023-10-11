@@ -1,0 +1,26 @@
+import matplotlib
+from matplotlib import pyplot as plt
+
+
+def F(n):
+    if n == 1:
+        return 1
+    F = [0] * (n + 1)
+    F[1] = 1
+    for i in range(2, n + 1):
+        F[i] = F[i - 1] + F[i - 2]
+        if i % 4 == 0:
+            F[i] += F[i // 4]
+    return F[n]
+
+
+n = 100
+cost = list(range(1, n + 1))
+route = [F(i) for i in cost]
+print(F(n))
+
+plt.plot(cost, route)
+plt.xlabel('Координата')
+plt.ylabel('Количество маршрутов')
+plt.title('Количесто маршрутов для кузнечика')
+plt.show()
